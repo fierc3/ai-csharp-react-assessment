@@ -14,21 +14,12 @@ namespace AiAssessment.Server
             var embeddingClient = new InfomaniakEmbeddingClient(apiKey, "bge_multilingual_gemma2", "https://api.infomaniak.com\t", "104108");
 
             // Convert History to List<Microsoft.Extensions.AI.ChatMessage>
-            var chatMessages = History.Select(h =>
-                new ChatMessage(
-                    h.Sender.Equals("bot", System.StringComparison.OrdinalIgnoreCase) ? ChatRole.Assistant : ChatRole.User,
-                    h.Message ?? string.Empty
-                )
-            ).ToList();
-
-            var llmAnswer = await chatClient.GetResponseAsync(chatMessages);
-            var embeddingAnswer = await embeddingClient.GetEmbeddingAsync(History.Last().Message ?? "nothing");
-            string embeddingString = string.Join(", ", embeddingAnswer);
+            // Generate response from Infomaniak API
 
             var response =
                 new AskChatMessage(
                     "bot",
-                    llmAnswer.Text ?? "Couldnt generate answer"
+                    "static response"
                 );
 
             return response;

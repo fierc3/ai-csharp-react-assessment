@@ -24,23 +24,7 @@ function App() {
     }
 
     async function fetchBotReply(text: string): Promise<ChatMessage> {
-        console.log("Fetching bot reply for:", text);
-
-        try {
-            const response = await fetch('/askChat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ history: [...messages, { sender: 'user', message: text }] })
-                });
-            if (response.ok) {
-                const data = await response.json();
-                // Just echo the first summary for demo purposes
-                return { sender: 'bot', message: data?.message || 'No data' };
-            }
-        } catch {
-            // fallback
-        }
-        return { sender: 'bot', message: "Sorry, I couldn't get a reply." };
+        return { sender: 'bot', message: "Frontend static." };
     }
 
     return (
