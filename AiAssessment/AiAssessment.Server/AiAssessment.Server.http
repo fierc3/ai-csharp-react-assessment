@@ -1,0 +1,6 @@
+@AiAssessment.Server_HostAddress = http://localhost:5112
+
+GET {{AiAssessment.Server_HostAddress}}/askChat/
+Accept: application/json
+
+###
